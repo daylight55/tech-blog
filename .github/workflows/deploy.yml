@@ -21,6 +21,14 @@ jobs:
       with:
         node-version: 16
 
+    - name: Cache node_modules
+      id: node_modules_cache_id
+      uses: actions/cache@v2
+      with:
+        path: |
+          node_modules
+        key: node-v$NODE_VERSION-v1-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
+
     - name: Setup Yarn
       run: |
         npm install --global yarn
