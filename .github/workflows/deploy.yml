@@ -4,10 +4,14 @@ on:
   push:
     branches:
       - main # mainブランチに変更がある場合に実行される
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -17,10 +21,14 @@ jobs:
       with:
         node-version: 16
 
+    - name: Setup Yarn
+      run: |
+        npm install --global yarn
+
     - name: Install dependencies and build
       run: |
-        npm ci
-        npm run build --if-present
+        yarn install --frozen-lockfile
+        yarn run build --if-present
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
