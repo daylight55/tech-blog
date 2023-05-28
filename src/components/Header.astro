@@ -2,19 +2,20 @@
 import HeaderLink from './HeaderLink.astro'
 import { SITE_TITLE } from '../consts'
 
-import { HamburgerMenu } from './HambugerMenu.jsx'
+import { HamburgerMenu } from './hamburger-menu.jsx'
 const links = [
   { href: '/', label: 'トップ' },
   { href: '/about', label: 'アバウト' },
   { href: '/contact', label: 'お問合せ' },
 ]
+const linkColor = 'blue'
 ---
 
 <header>
   <h2>
     {SITE_TITLE}
   </h2>
-  <nav>
+  <nav class="header">
     <ul class="links">
       {
         links.map((item) => (
@@ -28,8 +29,8 @@ const links = [
       </div>
     </ul>
   </nav>
-  <style>
-    header {
+  <style lang="scss" define:vars={{ linkColor }}>
+    .header {
       background-color: blanchedalmond;
       display: flex;
       align-items: center;
@@ -41,6 +42,15 @@ const links = [
       display: flex;
       gap: 12px;
       list-style: none;
+      li {
+        a {
+          text-decoration: none;
+          color: var(--linkColor);
+        }
+        a:hover {
+          text-decoration: underline;
+        }
+      }
     }
     h2 {
       margin: 0.5em 0;
