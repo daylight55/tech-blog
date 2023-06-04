@@ -20,6 +20,7 @@
     "tailwindcss": "^3.0.24"
   },
   "devDependencies": {
+    "goober": "^2.1.13",
     "sass": "^1.62.1",
     "typescript": "^5.0.4",
     "vite": "^4.2.1"
